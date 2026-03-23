@@ -1,5 +1,6 @@
 using HotelBookingSystem.Entity;
 using HotelBookingSystem.Helper;
+using HotelBookingSystem.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -39,10 +40,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+// Register Connection String
 builder.Services.AddDbContext<EntityDbContext>(option => {
 
     option.UseNpgsql(builder.Configuration.GetConnectionString("dbcon"));
 });
+
+// Register Depedancy Inject
+
+builder.Services.AddScoped<IHotelTblServices, HotelTblServices>();
 var app = builder.Build();
 
 
