@@ -1,5 +1,7 @@
-﻿using HotelBookingSystem.Services;
+﻿using HotelBookingSystem.Entity.Model;
+using HotelBookingSystem.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,35 +19,37 @@ namespace HotelBookingSystem.Controllers
         }
         // GET: api/<HotelAPIController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> GetAll()
         {
-            return new string[] { "value1", "value2" };
+            return Ok(await _hotelTblService.GetByAllHotelList());
         }
 
         // GET api/<HotelAPIController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return "value";
+            return Ok(await _hotelTblService.GetByHotelId(id));
         }
 
         // POST api/<HotelAPIController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromForm] HotelTbl Model)
         {
-
+            return Ok(await _hotelTblService.AddHotel(Model));
         }
 
         // PUT api/<HotelAPIController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async  Task<IActionResult> Put(int id, [FromBody] HotelTbl Model)
         {
+            return Ok(await _hotelTblService.UpdateHotel(id, Model));
         }
 
         // DELETE api/<HotelAPIController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            return Ok(await _hotelTblService.DeleteHotel(id));
         }
     }
 }
