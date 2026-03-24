@@ -31,7 +31,7 @@ namespace HotelBookingSystem.Services
 
                 var Data = await db.BookingTbls.AnyAsync(m => m.HotelId == Model.HotelId && Model.CheckInDate < m.CheckOutDate && Model.CheckOutDate > m.CheckInDate);
 
-                if (Data != null)
+                if (Data)
                 {
                     return "Booking already exists for selected dates";
                 }

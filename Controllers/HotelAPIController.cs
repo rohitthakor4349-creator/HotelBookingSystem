@@ -1,5 +1,6 @@
 ﻿using HotelBookingSystem.Entity.Model;
 using HotelBookingSystem.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -33,6 +34,7 @@ namespace HotelBookingSystem.Controllers
 
         // POST api/<HotelAPIController>
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Post([FromForm] HotelTbl Model)
         {
             return Ok(await _hotelTblService.AddHotel(Model));

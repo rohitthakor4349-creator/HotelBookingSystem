@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using HotelBookingSystem.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,6 +51,7 @@ builder.Services.AddDbContext<EntityDbContext>(option => {
 // Register Depedancy Inject
 
 builder.Services.AddScoped<IHotelTblServices, HotelTblServices>();
+builder.Services.AddScoped<IBookingTblServices, BookingTblServices>();
 var app = builder.Build();
 
 
@@ -67,5 +69,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHotelTblEndpoints();
 
 app.Run();

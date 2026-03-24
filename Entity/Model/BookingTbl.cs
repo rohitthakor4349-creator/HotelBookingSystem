@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.OpenApi;
 
 namespace HotelBookingSystem.Entity.Model
 {
@@ -16,4 +18,6 @@ namespace HotelBookingSystem.Entity.Model
 
         public HotelTbl? Hotel { get; set; }
     }
+
+
 }
