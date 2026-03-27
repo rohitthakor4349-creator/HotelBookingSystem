@@ -70,6 +70,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapHotelTblEndpoints();
+
 
 app.Run();
