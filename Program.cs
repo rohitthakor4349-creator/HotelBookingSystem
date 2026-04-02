@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using HotelBookingSystem.Controllers;
+using HotelBookingSystem.Middelware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -65,6 +66,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseMiddleware<RequestLogMiddleware>();
 app.UseAuthentication();
 app.UseAuthorization();
 

@@ -111,10 +111,7 @@ namespace HotelBookingSystem.Services
         {
             var Data = await db.BookingTbls.ToListAsync();
 
-            if (Data != null)
-            {
-                return Data = new List<BookingTbl>();
-            }
+           
             return Data;
         }
 
@@ -139,8 +136,8 @@ namespace HotelBookingSystem.Services
                 }
                
                 Data.guestName = Model.guestName;
-                Data.CheckInDate = DateTime.Now;
-                Data.CheckOutDate = DateTime.Now;
+                Data.CheckInDate =  Model.CheckInDate;
+                Data.CheckOutDate = Model.CheckOutDate;
                 Data.CreatedBy = Model.CreatedBy;
 
                 int row = await db.SaveChangesAsync();
